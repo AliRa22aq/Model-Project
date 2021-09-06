@@ -10,11 +10,16 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 250,
+    maxWidth: 300,
   },
   media: {
-    height: 250,
-    width: 250
+    height: 300,
+    width: 300,
+    ['@media (max-width:780px)']: { 
+      height: 180,
+      width: 180,
+    }
+
   },
 });
 
@@ -29,7 +34,7 @@ export const MediaCard: FC<any> = ({image, firstName, lastName, Speaker__descrip
           image={image}
           title="Contemplative Reptile"
         />
-        
+
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {`${firstName} ${lastName}`} 

@@ -1,30 +1,50 @@
 import React from 'react'
-import {MediaCard} from '../Card'
+import { MediaCard } from '../Card'
 import { makeStyles } from '@material-ui/core/styles';
+import Data from "../../assests/dummydata"
+import {Grid} from '@material-ui/core';
+
+console.log(Data)
+
 
 const useStyles = makeStyles({
     root: {
-      margin: 50,
+        margin: "50px 100px",
+        flexDirection: 'row',
+        ['@media (max-width:780px)']: { margin: "25px 25px"}
     },
-  });
+    profile: {
+        margin: 5,
+        width: "100%"
+
+    }
+});
 
 const Model = () => {
 
     const classes = useStyles();
 
-    const backgroundImage = "https://pi.tedcdn.com/r/s3.amazonaws.com/ems-photos/event-speaker-photos/production/original_photos/c06ff6bb11fe099c343fc1eca1f6889c.jpg?w=400";
-
     return (
         <div className={classes.root}>
-            < MediaCard 
-                image={backgroundImage} 
-                firstName="Shameran"
-                lastName="Abed"
-                Speaker__description="Global poverty activist"
-                />
+
+            <Grid container spacing={0} className={classes.profile}> 
+            {
+                Data && Data.map(profile => 
+                    <Grid item xs={4} lg={3}> 
+                        < MediaCard
+                            image={profile.image}
+                            firstName={profile.firstName}
+                            lastName={profile.lastName}
+                            Speaker__description={profile.description}
+                        />
+                    </Grid>
+                )
+            }
+            </Grid>
 
         </div>
     )
+
 }
 
 export default Model
