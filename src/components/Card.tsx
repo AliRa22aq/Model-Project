@@ -37,12 +37,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginLeft: 70,
     marginRight: 70,
-    border: "1px solid black", 
+    // border: "1px solid black", 
 
   },
   ModelCard: {
-    height: 400,
-    border: "1px solid black", 
+    height: 380,
+    // border: "1px solid black", 
     // maxHeight: 600
 
     // width: 1100
@@ -52,41 +52,41 @@ const useStyles = makeStyles((theme) => ({
     height: 350,
     width: 300,
     // width: "30%",
-    border: "1px solid black", 
+    // border: "1px solid black", 
 
   },
   ModelCardMediaImage: {
     height: 300,
     width: 300,
-    border: "1px solid black", 
+    // border: "1px solid black", 
 
   },
   ModelCardNameContainer:{
     backgroundColor: "black",
-    border: "1px solid white", 
+    // border: "1px solid white", 
 
   },
   ModelCardName: {
     color: "yellow",
-    border: "1px solid black", 
+    // border: "1px solid black", 
 
   },
   ModelCardDescription: {
     color: "yellow",
-    border: "1px solid black", 
+    // border: "1px solid black", 
 
   },
   ModelCardTextContainer: {
     width: "70%",
-    border: "1px solid black", 
-    margin: "30px",
+    // border: "1px solid black", 
+    margin: "20px 30px",
     maxHeight: 350,
     display: "flex",
     overflowY: "scroll"
     // msOverflowY: "scroll"
   },
   ModelCardCross: {
-    border: "1px solid black", 
+    // border: "1px solid black", 
     width: "20%",
     float: "right",
     justifyContent: "flex-end",
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
   ModelCardDetails: {
     width: "80%",
-    border: "1px solid black", 
+    // border: "1px solid black", 
   },
   ModelCardHeading: {
     marginBottom: 10
