@@ -9,10 +9,15 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { useStyles } from './styles'
 import { FiX } from 'react-icons/fi';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { Grid } from '@material-ui/core';
 
 export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__description }) => {
 
   const classes = useStyles();
+  const smallScreen = useMediaQuery('(max-width:720px)');
+  // console.log(smallScreen)
+
   const [open, setOpen] = useState(false);
   const [left, serLeft] = useState(false)
 
@@ -20,11 +25,16 @@ export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__descri
   const handleOpen = (e: any) => {
     // Check the mid of the page
     const { innerWidth: width, innerHeight: height } = window;
+    window.scroll({top: e.clientX, left: e.clientY, behavior: 'smooth'});
 
     if (!open) {
-      serLeft(width/2/e.clientX < 1 ? false : true)
       setOpen(true)
+      serLeft(width/2/e.clientX < 1 ? false : true) 
+      console.log("leftttt ", left)
     }
+
+    // if(!smallScreen){
+    // }
   };
 
   const handleClose = () => {
@@ -70,17 +80,17 @@ export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__descri
       >
         <Fade in={open}>
 
-          <Card onClick={handleOpen} >
 
-            <div className={classes.ModelCard} >
+            <div className={classes.ModelCard} onClick={handleOpen} >
 
-              <div className={classes.ModelCardMediaContainer} style={{ float: left ? "left" : "right" }}>
+              <div className={classes.ModelCardMediaContainer} 
+               style={{ float: left ? "left" : "right"}} >
 
                 <CardActionArea>
                   <CardMedia
                     className={classes.ModelCardMediaImage}
                     image={image}
-                    title="Contemplative Reptile"
+                    title="Contemplative Reptrile"
                   />
 
                   <CardContent className={classes.ModelCardNameContainer}>
@@ -92,11 +102,12 @@ export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__descri
                     </Typography>
                   </CardContent>
                 </CardActionArea>
+
               </div>
 
 
-              <div className={classes.ModelCardTextContainer}
-                style={{ float: left ? "left" : "right" }}>
+              <div className={classes.ModelCardTextContainer} 
+              style={{ float: left ? "left" : "right" }}>
 
 
                 <div className={classes.ModelCardDetails} >
@@ -145,12 +156,13 @@ export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__descri
 
                 </div>
 
+
                 <div onClick={() => setOpen(false)} className={classes.ModelCardCross}> <FiX color="red" /> </div>
 
 
               </div>
+
             </div>
-          </Card>
         </Fade>
       </Modal>
 

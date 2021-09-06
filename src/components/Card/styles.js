@@ -4,15 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 300,
+      scrollBehavior: "smooth",
       ['@media (max-width:780px)']: { maxWidth: 200,}
     },
     media: {
       height: 300,
       width: 300,
-      // "&:hover": {
-      //   height: 300,
-      //   width: 350,
-      // },
       ['@media (max-width:780px)']: {
         height: 180,
         width: 180,
@@ -24,20 +21,21 @@ export const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       marginLeft: 70,
       marginRight: 70,
-      // border: "1px solid black", 
-  
+      
+      ['@media (max-width:780px)']: {
+        
+      }
+      
     },
     ModelCard: {
-      height: 380,
-      // border: "1px solid black", 
-      // maxHeight: 600
-  
-      // width: 1100
+      height: 380,     
+      backgroundColor: "white",
     },
   
     ModelCardMediaContainer: {
       height: 350,
       width: 300,
+      ['@media (max-width:780px)']: {float: "none"}      
       // width: "30%",
       // border: "1px solid black", 
   
@@ -45,6 +43,19 @@ export const useStyles = makeStyles((theme) => ({
     ModelCardMediaImage: {
       height: 300,
       width: 300,
+      ['@media (max-width:780px)']: {
+        height: 250,
+        width: 250,
+      },
+
+  //  img: {
+  //     ['@media (max-width:780px)']: {
+  //       height: 250,
+  //       width: 250,
+  //       alignItems: "center",
+  //       alignContent: "center"
+  //     }
+      
       // border: "1px solid black", 
   
     },
@@ -65,11 +76,13 @@ export const useStyles = makeStyles((theme) => ({
     },
     ModelCardTextContainer: {
       width: "70%",
+      // height: 400,
       // border: "1px solid black", 
       margin: "20px 30px",
       maxHeight: 350,
       display: "flex",
-      overflowY: "scroll"
+      overflowY: "scroll",
+      ['@media (max-width:780px)']: {float: "none"}
       // msOverflowY: "scroll"
     },
     ModelCardCross: {
@@ -97,6 +110,8 @@ export const useStyles = makeStyles((theme) => ({
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
+
+    
     })
   );
   
