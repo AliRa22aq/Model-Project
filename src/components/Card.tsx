@@ -10,13 +10,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import CSS from 'csstype';
-
-
-import CardHeader from '@material-ui/core/CardHeader'
-import CardActions from '@material-ui/core/CardActions'
-import Collapse from '@material-ui/core/Collapse'
-import IconButton from '@material-ui/core/IconButton'
-
+import './card.css'
+import { FiX } from 'react-icons/fi';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,48 +35,103 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  modalRoot: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginLeft: 70,
+    marginRight: 70,
+    border: "1px solid black", 
+
   },
   ModelCard: {
-    width: '100%',
-    hight: '100%',
-    margin: "0px 50px",
+    height: 400,
+    border: "1px solid black", 
+    // maxHeight: 600
+
+    // width: 1100
   },
-  ModelCardMedia: {
-    width: '40%%',
-    borderRadius: 1,
-    borderColer: "black",
+
+  ModelCardMediaContainer: {
+    height: 350,
+    width: 300,
+    // width: "30%",
+    border: "1px solid black", 
+
   },
-  ModelCardText: {
-    width: '60%%',
-    borderRadius: 1,
-    borderColer: "black"
+  ModelCardMediaImage: {
+    height: 300,
+    width: 300,
+    border: "1px solid black", 
+
   },
+  ModelCardNameContainer:{
+    backgroundColor: "black",
+    border: "1px solid white", 
+
+  },
+  ModelCardName: {
+    color: "yellow",
+    border: "1px solid black", 
+
+  },
+  ModelCardDescription: {
+    color: "yellow",
+    border: "1px solid black", 
+
+  },
+  ModelCardTextContainer: {
+    width: "70%",
+    border: "1px solid black", 
+    margin: "30px",
+    maxHeight: 350,
+    display: "flex",
+    overflowY: "scroll"
+    // msOverflowY: "scroll"
+  },
+  ModelCardCross: {
+    border: "1px solid black", 
+    width: "20%",
+    float: "right",
+    justifyContent: "flex-end",
+    display: "flex",
+    margin: "0px 10px"
+  },
+  ModelCardDetails: {
+    width: "80%",
+    border: "1px solid black", 
+  },
+  ModelCardHeading: {
+    marginBottom: 10
+  },
+  ModelCardtxt: {
+    marginBottom: 10
+  },
+  
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
-}));
+  })
+);
 
 
 export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__description }) => {
   
+
+
   const [open, setOpen] = useState(false);
   const [position, setPosition] = useState<CSS.Property.Float>("none")
+  const [left, serLeft] = useState(false)
   
   const classes = useStyles();
 
   const handleOpen = (e: any) => {
-    console.log(e.screenX)
-    setPosition(e.screenX > 500 ? "right":"left")
-
-    setOpen(true);
+   
+    if(!open){
+      setOpen(true);
+      console.log(e.screenX)
+      setPosition(e.screenX > 500 ? "right":"left")
+      serLeft(e.screenX > 500 ? false:true)
+    }
   };
 
   const handleClose = () => {
@@ -93,6 +143,7 @@ export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__descri
   return (
     <div>
       <Card className={classes.root} onClick={(e) => handleOpen(e)}>
+
         <CardActionArea>
           <CardMedia
             className={classes.media}
@@ -124,39 +175,91 @@ export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__descri
         BackdropProps={{
           timeout: 500,
         }}
-      >
+        >
         <Fade  in={open}>
 
-          <Card className={classes.ModelCard} onClick={handleOpen} >
+          <Card onClick={handleOpen} >
 
-            <div className={classes.ModelCardMedia} style={{float: position}}  >
+          <div className={classes.ModelCard} >
 
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image={image}
-                  title="Contemplative Reptile"
-                />
+                <div className={classes.ModelCardMediaContainer} style={{float: left? "left":"right"}}>
 
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {`${firstName} ${lastName}`}
+                  <CardActionArea>
+                    <CardMedia
+                      className={classes.ModelCardMediaImage}
+                      image={image}
+                      title="Contemplative Reptile"
+                    />
+
+                    <CardContent  className={classes.ModelCardNameContainer}>
+                      <Typography gutterBottom variant="h5" component="h2" className={classes.ModelCardName}>
+                        {`${firstName} ${lastName}`}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" component="p" className={classes.ModelCardDescription} >
+                        {Speaker__description}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </div>
+
+
+                <div className={classes.ModelCardTextContainer} 
+                style={{ float: left? "left":"right"}}>
+
+
+                  <div className={classes.ModelCardDetails} >
+
+                  <Typography variant="h6" className={classes.ModelCardHeading}>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                  terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                  labore wes anderson cred nesciunt sapiente ea proident.
+                  </Typography >
+
+                  <Typography className={classes.ModelCardtxt}>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                  terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                  labore wes anderson cred nesciunt sapiente ea proident.
                   </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    {Speaker__description}
+
+                  <Typography className={classes.ModelCardtxt}>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                  terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                  labore wes anderson cred nesciunt sapiente ea proident.
                   </Typography>
-                </CardContent>
-              </CardActionArea>
-            </div>
 
-              <div className={classes.ModelCardText} >  
+                  <Typography className={classes.ModelCardtxt}>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                  terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                  labore wes anderson cred nesciunt sapiente ea proident.
+                  </Typography>
 
-              hello world
+                  <Typography className={classes.ModelCardtxt}>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                  terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                  labore wes anderson cred nesciunt sapiente ea proident.
+                  </Typography>
 
-              </div>
+                  <Typography className={classes.ModelCardtxt}>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                  terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                  labore wes anderson cred nesciunt sapiente ea proident.
+                  </Typography>
+
+                  <Typography className={classes.ModelCardtxt}>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                  terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+                  labore wes anderson cred nesciunt sapiente ea proident.
+                  </Typography>
+
+                  </div>
+
+                  <div onClick={()=> setOpen(false)} className={classes.ModelCardCross}> <FiX color="red" /> </div>
 
 
-
+                </div>
+                
+                
+          </div>
 
           </Card>
 
