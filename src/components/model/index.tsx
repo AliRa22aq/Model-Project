@@ -1,28 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { MediaCard } from '../Card'
 import { makeStyles } from '@material-ui/core/styles';
 import Data from "../../assests/dummydata"
 import {Grid} from '@material-ui/core';
 
-console.log(Data)
 
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         margin: "50px 100px",
         flexDirection: 'row',
-        ['@media (max-width:780px)']: { margin: "25px 25px"}
+        ['@media (max-width:780px)']: { margin: "20px 20px"}
     },
     profile: {
         margin: 5,
         width: "100%"
-
     }
-});
+    })
+);
 
 const Model = () => {
 
     const classes = useStyles();
+
+  
 
     return (
         <div className={classes.root}>
@@ -41,6 +41,8 @@ const Model = () => {
                 )
             }
             </Grid>
+
+
 
         </div>
     )
