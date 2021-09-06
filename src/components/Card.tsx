@@ -17,15 +17,15 @@ import { FiX } from 'react-icons/fi';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 300,
-    ['@media (max-width:780px)']: { maxWidth: 200 }
+    ['@media (max-width:780px)']: { maxWidth: 200,}
   },
   media: {
     height: 300,
     width: 300,
-    "&:hover": {
-      height: 350,
-      width: 350,
-    },
+    // "&:hover": {
+    //   height: 300,
+    //   width: 350,
+    // },
     ['@media (max-width:780px)']: {
       height: 180,
       width: 180,
