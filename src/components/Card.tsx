@@ -27,12 +27,21 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 300,
     width: 300,
+    "&:hover": {
+      height: 350,
+      width: 350,
+    },
     ['@media (max-width:780px)']: {
       height: 180,
       width: 180,
     }
   },
   modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalRoot: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -140,7 +149,6 @@ export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__descri
               </CardActionArea>
             </div>
 
-              {/* <div style={{width: 500, height: 500, float: "left"}}>   */}
               <div className={classes.ModelCardText} >  
 
               hello world
