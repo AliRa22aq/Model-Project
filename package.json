@@ -12,6 +12,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@wellyshen/use-web-animations": "^0.9.1",
     "feather-icons": "^4.28.0",
     "install": "^0.13.0",
     "npm": "^7.22.0",

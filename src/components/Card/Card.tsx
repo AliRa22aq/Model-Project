@@ -1,4 +1,4 @@
-import React, { FC, useState} from 'react';
+import React, { FC, useState, useEffect} from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,40 +11,86 @@ import { useStyles } from './styles'
 import { FiX } from 'react-icons/fi';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from '@material-ui/core';
+import useWebAnimations from "@wellyshen/use-web-animations";
 
-export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__description }) => {
+
+export const MediaCard: FC<any> = ({ id, image, firstName, lastName, Speaker__description }) => {
 
   const classes = useStyles();
   const smallScreen = useMediaQuery('(max-width:720px)');
-  // console.log(smallScreen)
 
   const [open, setOpen] = useState(false);
   const [left, serLeft] = useState(false)
+  const [position, serPosition] = useState({
+    x: 0,
+    y: 0
+  })
 
+  const { ref, animate } = useWebAnimations();
 
   const handleOpen = (e: any) => {
     // Check the mid of the page
     const { innerWidth: width, innerHeight: height } = window;
-    window.scroll({top: e.clientX, left: e.clientY, behavior: 'smooth'});
+
+    serPosition({
+      x: e.clientX,
+      y: e.clientY
+    })
+
+    // window.scrollTo(height/2);
+
+    var element = document.getElementById(id);
+    element?.scrollIntoView({behavior: "smooth"}); 
+    // element?.scrollIntoView()
+    // element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+
+
+    // console.log(e.clientX)
+    console.log("Secreen width", width)
+    // console.log("Secreen per div", (width - 60 )/ 4)
+    console.log("Clicking  at ", e.clientX)
+
+
+
+    if (e.clientX > (width)/ 4 + 60  && e.clientX  < 2* (width)/ 4){
+      animate({
+        keyframes: { transform: `translateX(${-320}px` },
+        animationOptions: { duration: 200, fill: "forwards" },
+      });
+    }
+    if (e.clientX > 2*(width)/ 4  && e.clientX  < 3* (width)/ 4 - 60 ){
+      animate({
+        keyframes: [
+          {transform: `translate(${320}px, ${0}px)` },
+          // {transform: `translate(${320}px, ${50}px)` },
+        ],
+        animationOptions: { duration: 300, fill: "forwards" },
+      });
+    } 
+
+
 
     if (!open) {
       setOpen(true)
-      serLeft(width/2/e.clientX < 1 ? false : true) 
-      console.log("leftttt ", left)
+      serLeft(e.clientX > width/2 ? false : true)
+
     }
 
-    // if(!smallScreen){
-    // }
   };
 
   const handleClose = () => {
+    animate({
+      keyframes: { transform: `translate(${0}px, ${0}px)` },
+      animationOptions: { duration: 200, fill: "forwards" },
+    });
+
     setOpen(false);
   };
 
 
   return (
     <div>
-      <Card className={classes.root} onClick={(e) => handleOpen(e)}>
+      <Card className={classes.root} onClick={(e) => handleOpen(e)} ref={ref} id={id}>
 
         <CardActionArea>
           <CardMedia
@@ -157,7 +203,7 @@ export const MediaCard: FC<any> = ({ image, firstName, lastName, Speaker__descri
                 </div>
 
 
-                <div onClick={() => setOpen(false)} className={classes.ModelCardCross}> <FiX color="red" /> </div>
+                <div onClick={handleClose} className={classes.ModelCardCross}> <FiX color="red" /> </div>
 
 
               </div>

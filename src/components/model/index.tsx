@@ -29,9 +29,10 @@ const Model = () => {
 
             <Grid container spacing={0} className={classes.profile}>
                 {
-                    Data && Data.map((profile, key) =>
-                        <Grid item xs={4} lg={3} key={key}>
+                    Data && Data.map((profile) =>
+                        <Grid item xs={4} lg={3} key={profile.id}>
                             < MediaCard
+                                id={profile.id} 
                                 image={profile.image}
                                 firstName={profile.firstName}
                                 lastName={profile.lastName}
@@ -41,6 +42,10 @@ const Model = () => {
                     )
                 }
             </Grid>
+            <br />
+            <br />
+            <br />
+            <br />
 
 
 
